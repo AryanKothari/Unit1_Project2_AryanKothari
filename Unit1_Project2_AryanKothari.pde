@@ -1,24 +1,32 @@
-  int screen = 1;
-  PImage HeartEmoji;
-  PImage Ambroise;
-  
-  void setup ()
-  {
+int screen = 1;
+PImage HeartEmoji;
+PImage Bob;
+PImage Pizza;
+float randomvalue = random(255);
+void setup ()
+{
   fullScreen();
-  background(0,100,0);
+  background(0, 100, 0);
   noStroke();
- 
- HeartEmoji = loadImage("HeartEmoji.png");
- Ambroise = loadImage("Ambroise.png");
- 
+
+  HeartEmoji = loadImage("HeartEmoji.png");
+  Bob = loadImage("Bob.png");
+  Pizza = loadImage("imgres.png");
+
   imageMode(CENTER);
-  image(HeartEmoji,width/4.2, height/1.75,700,700);
+  image(HeartEmoji, width/4.2, height/1.75, 500, 500);
 
-  fill (0,0,0);
+  imageMode(CENTER);
+  image(Bob, width/1.3, height/1.75, 300, 500);
+
+  imageMode(CENTER);
+  image(Pizza, width/5.5, height/5.2, 150, 150);
+
+  fill (0, 0, 100);
   textSize(100);
-  text("Lovers", 160, 400);
+  text("Lovers of Bob", 350, 200);
 
-  fill (0,0,0);
+  fill (0, 0, 0);
   textSize(30);
   text("Created by Aryan Kothari", 1050, 860);
 
@@ -35,22 +43,15 @@
   fill(0, 0, 255);
   textSize(30);
   text("Quit", 625, 520);
-  
+
   screen = 0; //Home screen
-  }
-  
-  void draw()
-  {
-    if (screen == 0 & mousePressed & mouseX >= 0 & mouseX <= 800 & 
+}
+
+void draw()
+{
+  if (screen == 0 & mousePressed & mouseX >= 0 & mouseX <= 800 & 
     mouseY >= 0 & mouseY <= 450)
-    {
-      exit();
-    }
-    
-    imageMode(CENTER);
-    image(HeartEmoji,width/4.2, height/1.75,700,700);
-    
-    imageMode(CENTER);
-    image(Ambroise,width/1.3, height/1.75, 500, 650);
+  {
+    exit();
   }
-  
+}
