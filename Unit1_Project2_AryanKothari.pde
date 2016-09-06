@@ -1,3 +1,13 @@
+
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+Minim minim;
+AudioPlayer song;
+AudioPlayer input;
 int screen = 0;
 PImage HeartEmoji;
 PImage Bob;
@@ -6,18 +16,22 @@ PImage Broc;
 float velY = 5;
 float velX = 5;
 float bobX = 50;
-float r = 0;
-float g = 0;
-float b = 0;
+float r = random(255);
+float g = random(255);
+float b = random(255);
 float bobY;
 float barrierY[] = new float [10];
-int barrierX[] = new int[10];
+float barrierX[] = new float [10];
 int nums[] = new int[500];
 void setup ()
 {
   fullScreen();
   background(0, 100, 0);
   noStroke();
+
+  minim = new Minim(this); //Music 
+  song = minim.loadFile("MinionSong.mp3");
+  song.loop();
 
   for (int i = 0; i < nums.length; i++)
   {
@@ -26,16 +40,19 @@ void setup ()
 
   bobY = height/2;
 
-  barrierX[1] = width/2;
-  barrierX[0] = width/3;
-  barrierX[2] = 0;
-  barrierX[3] = width;
+  barrierX[1] = width/1.2;
+  barrierX[0] = width/1.6;
+  barrierX[2] = width/2.0;
+  barrierX[3] = width/2.4;
+  barrierX[4] = width/3;
+  barrierX[5] = width/4;
+  barrierX[6] = width/5.5;
 
   //barrierY int Values 
-  barrierY[0] = height/2;
+  barrierY[0] = 0;
   barrierY[1] = 0;
   barrierY[2] = 0;
-  barrierY[3] = height;
+  barrierY[3] = 0;
   HeartEmoji = loadImage("HeartEmoji.png");
   Bob = loadImage("Bob.png");
   Pizza = loadImage("imgres.png");
@@ -98,7 +115,7 @@ void draw()
     fill(0, 0, 0);
     textSize(30);
     text("Use Arrow Keys to Reach the Pizza. Dodge all other objects!", width/4.5, height/20);
-    
+
     Barriers();
 
     imageMode(CENTER);
@@ -110,7 +127,10 @@ void draw()
 
     if (bobX > width/1.1)
     {
+
       background(0, 100, 0);
+      song = minim.loadFile("TaaDaa.mp3");
+      song.loop();
       for (int i = 0; i < nums.length; i++)
       {
         imageMode(CENTER);
@@ -136,17 +156,9 @@ void keyPressed()
   {
     bobX = bobX + 12;
   }
-  if (keyCode == UP)
-  {
-    bobY = bobY - 12;
-  }
   if (keyCode == LEFT)
   {
     bobX = bobX - 12;
-  }
-  if (keyCode == DOWN)
-  {
-    bobY = bobY + 12;
   }
 }
 
@@ -183,8 +195,8 @@ void BarrierRestrictions()
     g = random(255);
     b = random(255);
   }
-  
-   if (barrierY[2] > height)
+
+  if (barrierY[2] > height)
   {
     barrierY[2] = velY*-1;
     r = random(255);
@@ -198,7 +210,7 @@ void BarrierRestrictions()
     g = random(255);
     b = random(255);
   }
-     if (barrierY[3] > height)
+  if (barrierY[3] > height)
   {
     barrierY[3] = velY*-1;
     r = random(255);
@@ -212,19 +224,65 @@ void BarrierRestrictions()
     g = random(255);
     b = random(255);
   }
+    if (barrierY[4] > height)
+  {
+    barrierY[4] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
+  if (barrierY[4] < 0)
+  {
+    barrierY[4] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
+    if (barrierY[5] > height)
+  {
+    barrierY[5] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
+  if (barrierY[5] < 0)
+  {
+    barrierY[5] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
+    if (barrierY[6] > height)
+  {
+    barrierY[6] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
+  if (barrierY[6] < 0)
+  {
+    barrierY[6] = velY*-1;
+    r = random(255);
+    g = random(255);
+    b = random(255);
+  }
 }
 
 void Barriers()
 {
   fill(r, g, b);
-  rect(barrierX[0], barrierY[0], 80, 80);
-  rect(barrierX[1], barrierY[1], 50, 50);
-  barrierY[0] = barrierY[0] + 5;
-  barrierY[1] = barrierY[1] + 10;
-  rect(barrierX[2], barrierY[2], 50, 50);
-  barrierX[2] = barrierX[2] + 3;
-  barrierY[2] = barrierY[2] + 3;
-  rect(barrierX[3], barrierY[3], 50, 50);
-  barrierX[3] = barrierX[3] - 3;
-  barrierY[3] = barrierY[3] - 3;
+  rect(barrierX[0], barrierY[0], 50, 50);
+  barrierY[0] = barrierY[0] + random(0, 20);
+  rect(barrierX[1], barrierY[1], 40, 40);
+  barrierY[1] = barrierY[1] + random(0, 20);
+  rect(barrierX[2], barrierY[2], 60, 60);
+  barrierY[2] = barrierY[2] + random(0, 20);
+  rect(barrierX[3], barrierY[3], 35, 35);
+  barrierY[3] = barrierY[3] + random(0, 20);
+  rect(barrierX[4], barrierY[4], 40,40);
+  barrierY[4] = barrierY[4] + random(0, 20);
+  rect(barrierX[5], barrierY[5], 20,20);
+  barrierY[5] = barrierY[5] + random(0, 20);
+  rect(barrierX[6], barrierY[6], 50,50);
+  barrierY[6] = barrierY[6] + random(0, 20);
 }
