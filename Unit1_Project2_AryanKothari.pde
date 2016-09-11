@@ -1,3 +1,7 @@
+/*
+Lovers of Bob is created by Aryan Kothari. For my second project of this class, 
+ Bob has to make his way to the pizza to win! But be careful! If he gets hit by the blocks -Game Over!-
+ */
 
 import ddf.minim.*;
 import ddf.minim.analysis.*;
@@ -43,15 +47,15 @@ void setup ()
 
   bobY = height/2;
 
-for(int i = 0; i<barrierX.length; i++)
-{
-  barrierX[i] = i * 200 + 200;
-}
+  for (int i = 0; i<barrierX.length; i++)
+  {
+    barrierX[i] = i * 200 + 100;
+  }
 
-for(int i = 0; i<barrierY.length; i++)
-{
-  barrierY[i] = 0;
-}
+  for (int i = 0; i<barrierY.length; i++)
+  {
+    barrierY[i] = 0;
+  }
 
   HeartEmoji = loadImage("HeartEmoji.png");
   Bob = loadImage("Bob.png");
@@ -66,6 +70,9 @@ for(int i = 0; i<barrierY.length; i++)
 
   imageMode(CENTER);
   image(Pizza, width/5.5, height/5.2, 150, 150);
+
+  imageMode(CENTER);
+  image(Pizza, width/1.32, height/5.2, 150, 150);
 
   fill (0, 0, 100);
   textSize(100);
@@ -176,7 +183,7 @@ void BarrierRestrictions()
       g = random(255);
       b = random(255);
 
-      randomSize[i] = 20 + (i+1)*random(0,15);
+      randomSize[i] = 20 + (i+1)*random(0, 30);
     }
   }
 }
