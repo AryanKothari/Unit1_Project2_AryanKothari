@@ -35,11 +35,13 @@ void setup ()
   background(0, 100, 0);
   noStroke();
 
+//Music
   minim = new Minim(this); //Music 
   song = minim.loadFile("MinionSong.mp3");
   song2 = minim.loadFile("TaaDaa.mp3");
   song.loop();
 
+//randomsizeNumbers
   for (int i = 0; i < nums.length; i++)
   {
     nums[i] = int(random(70));
@@ -47,16 +49,18 @@ void setup ()
 
   bobY = height/2;
 
+//CooridinatesX for Barrier
   for (int i = 0; i<barrierX.length; i++)
   {
     barrierX[i] = i * 200 + 100;
   }
-
+//CoordinatesY for barrier
   for (int i = 0; i<barrierY.length; i++)
   {
     barrierY[i] = 0;
   }
 
+//Images
   HeartEmoji = loadImage("HeartEmoji.png");
   Bob = loadImage("Bob.png");
   Pizza = loadImage("imgres.png");
@@ -101,8 +105,9 @@ void setup ()
 void draw()
 {
 
+  
   if (screen == 0 & mousePressed & mouseX >= 620 & mouseX <= 800 & 
-    mouseY >= 400 & mouseY <= 450) //Go to Play
+    mouseY >= 400 & mouseY <= 450) 
   {
     background(0, 100, 0);
     fill(255, 0, 0);
@@ -111,9 +116,6 @@ void draw()
 
   if (screen == 1)
   {
-
-
-
     fill(r, g, b);
     background(0, 100, 0);
     noStroke();
@@ -132,6 +134,7 @@ void draw()
     image(Bob, bobX, bobY, 50, 50);
 
 
+//Victory Screen
     if (bobX > width/1.1)
     {
 
@@ -157,6 +160,7 @@ void draw()
 
 
 
+//Moving Bob
 void keyPressed()
 {
   if (keyCode == RIGHT)
@@ -171,7 +175,7 @@ void keyPressed()
 
 
 
-
+//Boundaries for Barriers
 void BarrierRestrictions()
 {
   for (int i = 0; i < barrierY.length; i++)
@@ -188,6 +192,7 @@ void BarrierRestrictions()
   }
 }
 
+//Making Barriers
 void Barriers()
 {
   fill(r, g, b);
